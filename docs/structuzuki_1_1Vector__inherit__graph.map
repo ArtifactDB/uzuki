@@ -1,0 +1,6 @@
+<map id="uzuki::Vector" name="uzuki::Vector">
+<area shape="rect" id="node1" title="Base class for all embedded vector&#45;like objects." alt="" coords="127,79,223,104"/>
+<area shape="rect" id="node3" href="$structuzuki_1_1SomeFactorVector.html" title="Base class for embedded factors." alt="" coords="5,152,172,192"/>
+<area shape="rect" id="node4" href="$structuzuki_1_1TypedVector.html" title="Base class for embedded vectors with atomic types." alt="" coords="197,152,327,192"/>
+<area shape="rect" id="node2" href="$structuzuki_1_1Base.html" title="Base class for all embedded R objects." alt="" coords="131,5,219,31"/>
+</map>

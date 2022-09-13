@@ -1,0 +1,6 @@
+<map id="uzuki::Array" name="uzuki::Array">
+<area shape="rect" id="node1" title="Virtual class for an embedded multi&#45;dimensional array&#45;like object." alt="" coords="125,79,213,104"/>
+<area shape="rect" id="node3" href="$structuzuki_1_1SomeFactorArray.html" title="Base class for embedded multi&#45;dimensional factor arrays." alt="" coords="5,152,164,192"/>
+<area shape="rect" id="node4" href="$structuzuki_1_1TypedArray.html" title="Virtual class for an multi&#45;dimensional array&#45;like object with atomic types." alt="" coords="189,152,319,192"/>
+<area shape="rect" id="node2" href="$structuzuki_1_1Base.html" title="Base class for all embedded R objects." alt="" coords="125,5,213,31"/>
+</map>
