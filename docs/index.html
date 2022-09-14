@@ -74,13 +74,15 @@ $(function() {
   <div class="headertitle"><div class="title">R lists to JSON, safely </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md__github_workspace_README"></a> </p><h1>Overview</h1>
-<p >This repository describes a format for safely serializing R lists (duh) into JSON. While most of this is handled by packages like <b>jsonlite</b>, there are some subtleties with respect to some types, e.g., factors, dates, integers versus doubles. Some mechanism is also required to handle non-serializable S3/S4 classes.</p>
-<h1>Layout</h1>
-<p >Unnamed lists are represented as JSON arrays.</p>
-<p >Named lists are represented as JSON objects where the keys are the names of the elements and the values are the elements themselves. Names are expected to be unique.</p>
-<p >All non-list R objects are represented as a JSON object with a <code>type</code> key. The value of <code>type</code> should be a string that determines the structure of the rest of the object.</p>
-<h1>Allowed types</h1>
+<div class="textblock"><p ><a class="anchor" id="md__github_workspace_README"></a> <img src="https://github.com/LTLA/uzuki/actions/workflows/run-tests.yaml/badge.svg" alt="Unit tests" style="pointer-events: none;" class="inline"/> <img src="https://github.com/LTLA/uzuki/actions/workflows/doxygenate.yaml/badge.svg" alt="Documentation" style="pointer-events: none;" class="inline"/> <a href="https://codecov.io/gh/LTLA/uzuki"><img src="https://codecov.io/gh/LTLA/uzuki/branch/master/graph/badge.svg?token=J3dxS3MtT1" alt="codecov" style="pointer-events: none;" class="inline"/></a></p>
+<h1>Overview</h1>
+<p >The <b>uzuki</b> repository describes a format for safely serializing R lists into JSON. While most of this is handled by packages like <b>jsonlite</b>, there are some subtleties with respect to preserving type, e.g., factors, dates, integers versus doubles. Some mechanism is also required to handle multi-dimensional arrays, data frames, and external references to non-serializable objects. The C++ library implements a portable validator for this specification.</p>
+<h1>Specification</h1>
+<h2>Concepts</h2>
+<p >The serialized JSON string should contain a single array or JSON object. The array/object may contain any number of nested arrays/objects, which in turn may contain any number of nested arrays/objects.</p>
+<p >All non-list R objects are represented as a JSON object with a <code>type</code> key. The value of <code>type</code> should be a string that determines the structure of the rest of the object. This ensures that the type of the R object can be recovered from the JSON.</p>
+<p >As R does not have any concept of scalars, neither does <b>uzuki</b>. All "scalars" are treated as atomic vectors of length 1.</p>
+<p >List objects are represented as plain JSON arrays or objects - see below for more details. These are considered as "structural" elements and so they do not require a <code>type</code> string.</p>
 <h2>Atomic vectors</h2>
 <p >We expect a <code>values</code> array containing the contents of the atomic vector. For example, an integer vector of <code>1:4</code> is represented as:</p>
 <div class="fragment"><div class="line">{</div>
@@ -159,12 +161,68 @@ $(function() {
 <div class="line">    &quot;type&quot;: &quot;nothing&quot;</div>
 <div class="line">}</div>
 </div><!-- fragment --><h2>Other objects</h2>
-<p >All other R objects are accommodated by setting <code>type</code> to <code>"other"</code>. This should be accompanied by an <code>index</code> integer that identifies this R object uniquely within the entire list.</p>
+<p >All other R objects are accommodated by setting <code>type</code> to <code>"other"</code>. This should be accompanied by an <code>index</code> integer that identifies this R object uniquely within the entire list. <code>index</code> should start at zero and be incremented whenever an unknown R object is encountered.</p>
 <div class="fragment"><div class="line">{</div>
 <div class="line">    &quot;type&quot;: &quot;other&quot;,</div>
 <div class="line">    &quot;index&quot;: 0</div>
 <div class="line">}</div>
-</div><!-- fragment --><p ><code>index</code> should start at zero and be incremented whenever an unknown R object is encountered. The idea is that the JSON file containing the R list is associated with additional metadata describing more complex objects; by indexing this additional metadata, we can restore the object in its appropriate location in the R list. </p>
+</div><!-- fragment --><p >Each index is a reference to external metadata describing more complex objects. By indexing this external metadata, we can restore the object in its appropriate location in the R list. The exact mechanism by which this restoration occurs is implementation-defined.</p>
+<h2>Lists</h2>
+<p >Unnamed lists are represented as JSON arrays. For example, <code>list(1:4, LETTERS[1:2])</code> is represented as:</p>
+<div class="fragment"><div class="line">[</div>
+<div class="line">    {</div>
+<div class="line">        &quot;type&quot;: &quot;integer&quot;,</div>
+<div class="line">        &quot;values&quot;: [ 1, 2, 3, 4 ]</div>
+<div class="line">    },</div>
+<div class="line">    {</div>
+<div class="line">        &quot;type&quot;: &quot;string&quot;,</div>
+<div class="line">        &quot;values&quot;: [ &quot;A&quot;, &quot;B&quot; ]</div>
+<div class="line">    }</div>
+<div class="line">]</div>
+</div><!-- fragment --><p >Named lists are represented as JSON objects where the keys are the names of the elements and the values are the elements themselves. Names are expected to be unique. For example, <code>list(X=1:4, Y=LETTERS[1:2])</code> is represented as:</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;X&quot;: {</div>
+<div class="line">        &quot;type&quot;: &quot;integer&quot;,</div>
+<div class="line">        &quot;values&quot;: [ 1, 2, 3, 4 ]</div>
+<div class="line">    },</div>
+<div class="line">    &quot;Y&quot;: {</div>
+<div class="line">        &quot;type&quot;: &quot;string&quot;,</div>
+<div class="line">        &quot;values&quot;: [ &quot;A&quot;, &quot;B&quot; ]</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><h1>Implementation</h1>
+<h2>Quick start</h2>
+<p >A reference implementation of the validator is provided as a header-only C++ library in <a href="include/uzuki"><code>include/uzuki</code></a>. This is useful for portable deployment in different frameworks like R, Python, etc. Once a JSON file is loaded in using the <a href="https://github.com/nlohmann/json"><code>nlohmann/json</code></a> library, we can check that it complies with the <b>uzuki</b> specification:</p>
+<div class="fragment"><div class="line">#include &quot;uzuki/uzuki.hpp&quot;</div>
+<div class="line"> </div>
+<div class="line">auto contents = nlohmann::json::parse(json_str);</div>
+<div class="line">uzuki::validate(contents);</div>
+</div><!-- fragment --><p >This will raise an error if any violations of the specification are observed. If the expected number of "other" objects is known, we can check that there are no more references than expected:</p>
+<div class="fragment"><div class="line">uzuki::validate(contents, num_references);</div>
+</div><!-- fragment --><p >Advanced users can also use the <b>uzuki</b> parser to transform the JSON content into more convenient representations. This is achieved by calling <code>parse()</code> with custom provisioner and external reference classes. For example, <a href="tests/src/test_subclass.h"><code>tests/src/test_subclass.h</code></a> defines the <code>DefaultProvisioner</code> and <code>DefaultExternals</code> classes, which can be used to load the JSON contents into <code>std::vector</code>s for easier downstream operations.</p>
+<div class="fragment"><div class="line">DefaultExternals ext(nexpected);</div>
+<div class="line"><span class="keyword">auto</span> ptr = uzuki::parse&lt;DefaultProvisioner&gt;(contents, ext);</div>
+</div><!-- fragment --><p >Also see the <a href="https://ltla.github.io/comservatory">reference documentation</a> for more details.</p>
+<h2>Building projects</h2>
+<p >If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>
+<div class="fragment"><div class="line">include(FetchContent)</div>
+<div class="line"> </div>
+<div class="line">FetchContent_Declare(</div>
+<div class="line">  libscran</div>
+<div class="line">  GIT_REPOSITORY https://github.com/LTLA/uzuki</div>
+<div class="line">  GIT_TAG master # or any version of interest </div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line">FetchContent_MakeAvailable(uzuki)</div>
+</div><!-- fragment --><p >Then you can link to <b>uzuki</b> to make the headers available during compilation:</p>
+<div class="fragment"><div class="line"># For executables:</div>
+<div class="line">target_link_libraries(myexe uzuki)</div>
+<div class="line"> </div>
+<div class="line"># For libaries</div>
+<div class="line">target_link_libraries(mylib INTERFACE uzuki)</div>
+</div><!-- fragment --><h1>Links</h1>
+<p >I can't remember where the name comes from, but it was probably from my habit of falling back to **iDOLM@ster** characters when I can't think of a better name. In this case, <a href="https://myanimelist.net/character/70883/Uzuki_Shimamura">Uzuki Shimamura</a>:</p>
+<p ><img src="https://pa1.narvii.com/6088/154344d5baafcd9da3154511d868e8b3ee33f5a4_hq.gif" alt="Uzuki Shimamura" class="inline"/> </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
