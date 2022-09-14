@@ -14,11 +14,11 @@ auto load(std::string contents, int nexpected) {
 
 TEST(LoadTest, StringVectorCheck) {
     auto out = load("[{ \"type\": \"string\", \"values\": [\"A\", \"BC\", \"DEF\"] }, { \"type\": \"string\", \"values\": [ null ] } ]", 0);
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultUnnamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 2);
+    EXPECT_FALSE(lptr->has_names);
     EXPECT_EQ(lptr->values[0]->type(), uzuki::STRING);
     EXPECT_EQ(lptr->values[1]->type(), uzuki::STRING);
 
@@ -35,11 +35,12 @@ TEST(LoadTest, StringVectorCheck) {
 
 TEST(LoadTest, NumberVectorCheck) {
     auto out = load("{ \"double\": { \"type\": \"number\", \"values\": [ null, -1.2, 4.9  ] }, \"integer\": {\"type\": \"integer\", \"values\": [ 0, 1, 2, null ] } }", 0);
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::NAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultNamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 2);
+    EXPECT_TRUE(lptr->has_names);
+
     EXPECT_EQ(lptr->names[0], "double");
     EXPECT_EQ(lptr->values[0]->type(), uzuki::NUMBER);
 
@@ -66,13 +67,12 @@ TEST(LoadTest, NumberVectorCheck) {
 
 TEST(LoadTest, BooleanCheck) {
     auto out = load("[ { \"type\": \"boolean\", \"values\": [ true, false, null ], \"names\": [ \"x\", \"yz\", \"abc\" ] } ]", 0);
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultUnnamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 1);
+    EXPECT_FALSE(lptr->has_names);
     EXPECT_EQ(lptr->values[0]->type(), uzuki::BOOLEAN);
-    EXPECT_EQ(lptr->values[0]->structure(), uzuki::VECTOR);
 
     auto ptr = static_cast<const DefaultBooleanVector*>(lptr->values[0].get());
     EXPECT_EQ(ptr->size(), 3);
@@ -87,11 +87,11 @@ TEST(LoadTest, BooleanCheck) {
 
 TEST(LoadTest, DateVectorCheck) {
     auto out = load("[ { \"type\": \"date\", \"values\": [ \"2022-05-21\", \"2017-06-22\" ] } ]", 0); 
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultUnnamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 1);
+    EXPECT_FALSE(lptr->has_names);
     EXPECT_EQ(lptr->values[0]->type(), uzuki::DATE);
 
     auto ptr = static_cast<const DefaultDateVector*>(lptr->values[0].get());
@@ -100,49 +100,49 @@ TEST(LoadTest, DateVectorCheck) {
     EXPECT_EQ(ptr->base.values[1], "2017-06-22");
 }
 
-TEST(LoadTest, FactorVectorCheck) {
+TEST(LoadTest, FactorCheck) {
     auto out = load("{ \"factor\": { \"type\": \"factor\", \"values\": [ \"aaron\", \"natalie portman\", \"aaron\" ], \"levels\": [ \"aaron\", \"natalie portman\" ] }, \
                       \"ordered\": { \"type\": \"ordered\", \"values\": [ \"x\", \"y\", \"z\" ], \"levels\": [ \"z\", \"y\", \"x\" ], \"names\": [ \"X\", \"Y\", \"Z\" ] } }", 0); 
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::NAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultNamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 2);
+    EXPECT_TRUE(lptr->has_names);
     EXPECT_EQ(lptr->names[0], "factor");
     EXPECT_EQ(lptr->values[0]->type(), uzuki::FACTOR);
     EXPECT_EQ(lptr->names[1], "ordered");
-    EXPECT_EQ(lptr->values[1]->type(), uzuki::ORDERED);
+    EXPECT_EQ(lptr->values[1]->type(), uzuki::FACTOR);
 
-    auto ptr = static_cast<const DefaultFactorVector*>(lptr->values[0].get());
+    auto ptr = static_cast<const DefaultFactor*>(lptr->values[0].get());
     EXPECT_EQ(ptr->size(), 3);
-    EXPECT_EQ(ptr->base.values[0], 0);
-    EXPECT_EQ(ptr->base.values[1], 1);
-    EXPECT_EQ(ptr->base.values[2], 0);
-    EXPECT_EQ(ptr->levels[0], "aaron");
-    EXPECT_EQ(ptr->levels[1], "natalie portman");
+    EXPECT_FALSE(ptr->fbase.ordered);
+    EXPECT_EQ(ptr->vbase.values[0], 0);
+    EXPECT_EQ(ptr->vbase.values[1], 1);
+    EXPECT_EQ(ptr->vbase.values[2], 0);
+    EXPECT_EQ(ptr->fbase.levels[0], "aaron");
+    EXPECT_EQ(ptr->fbase.levels[1], "natalie portman");
 
-    auto ptr2 = static_cast<const DefaultOrderedVector*>(lptr->values[1].get());
+    auto ptr2 = static_cast<const DefaultFactor*>(lptr->values[1].get());
     EXPECT_EQ(ptr2->size(), 3);
-    EXPECT_EQ(ptr2->base.values[0], 2);
-    EXPECT_EQ(ptr2->base.values[1], 1);
-    EXPECT_EQ(ptr2->base.values[2], 0);
-    EXPECT_EQ(ptr2->levels[0], "z");
-    EXPECT_EQ(ptr2->levels[1], "y");
-    EXPECT_EQ(ptr2->levels[2], "x");
-    EXPECT_EQ(ptr2->base.names[0], "X");
-    EXPECT_EQ(ptr2->base.names[1], "Y");
-    EXPECT_EQ(ptr2->base.names[2], "Z");
+    EXPECT_TRUE(ptr2->fbase.ordered);
+    EXPECT_EQ(ptr2->vbase.values[0], 2);
+    EXPECT_EQ(ptr2->vbase.values[1], 1);
+    EXPECT_EQ(ptr2->vbase.values[2], 0);
+    EXPECT_EQ(ptr2->fbase.levels[0], "z");
+    EXPECT_EQ(ptr2->fbase.levels[1], "y");
+    EXPECT_EQ(ptr2->fbase.levels[2], "x");
+    EXPECT_EQ(ptr2->vbase.names[0], "X");
+    EXPECT_EQ(ptr2->vbase.names[1], "Y");
+    EXPECT_EQ(ptr2->vbase.names[2], "Z");
 }
 
 TEST(LoadTest, NumberArrayCheck) {
     auto out = load("[ { \"type\": \"number\", \"values\": [ 5.2, null, -1.2, 4.9, 2, -5 ], \"dimensions\": [ 3, 2 ] } ]", 0);
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultNamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 1);
-    EXPECT_EQ(lptr->values[0]->type(), uzuki::NUMBER);
-    EXPECT_EQ(lptr->values[0]->structure(), uzuki::ARRAY);
+    EXPECT_EQ(lptr->values[0]->type(), uzuki::NUMBER_ARRAY);
 
     auto ptr = static_cast<const DefaultNumberArray*>(lptr->values[0].get());
     EXPECT_EQ(ptr->base.dimensions[0], 3);
@@ -153,12 +153,12 @@ TEST(LoadTest, NumberArrayCheck) {
 
 TEST(LoadTest, NamedArrayCheck) {
     auto out = load("[ { \"type\": \"integer\", \"values\": [ 1,2,3,6,5,4 ], \"dimensions\": [ 3, 2 ], \"names\": [ null, [\"A\", \"BC\"] ] } ]", 0);
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultNamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 1);
-    EXPECT_EQ(lptr->values[0]->type(), uzuki::INTEGER);
+    EXPECT_FALSE(lptr->has_names);
+    EXPECT_EQ(lptr->values[0]->type(), uzuki::INTEGER_ARRAY);
 
     auto ptr = static_cast<const DefaultIntegerArray*>(lptr->values[0].get());
     EXPECT_EQ(ptr->base.dimensions[0], 3);
@@ -174,35 +174,32 @@ TEST(LoadTest, NamedArrayCheck) {
 
 TEST(LoadTest, FactorArrayCheck) {
     auto out = load("[ { \"type\": \"ordered\", \"values\": [ \"jessica biel\", \"natalie portman\", \"jennifer lawrence\" ], \"levels\": [ \"jessica biel\", \"jennifer lawrence\", \"natalie portman\" ], \"dimensions\": [1, 3] } ]", 0);
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultUnnamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 1);
-    EXPECT_EQ(lptr->values[0]->type(), uzuki::ORDERED);
+    EXPECT_FALSE(lptr->has_names);
+    EXPECT_EQ(lptr->values[0]->type(), uzuki::FACTOR_ARRAY);
 
-    auto ptr = static_cast<const DefaultOrderedArray*>(lptr->values[0].get());
-    EXPECT_EQ(ptr->base.dimensions[0], 1);
-    EXPECT_EQ(ptr->base.dimensions[1], 3);
-    EXPECT_EQ(ptr->base.values[0], 0);
-    EXPECT_EQ(ptr->base.values[1], 2);
-    EXPECT_EQ(ptr->base.values[2], 1);
-    EXPECT_EQ(ptr->levels[0], "jessica biel");
-    EXPECT_EQ(ptr->levels[1], "jennifer lawrence");
-    EXPECT_EQ(ptr->levels[2], "natalie portman");
+    auto ptr = static_cast<const DefaultFactorArray*>(lptr->values[0].get());
+    EXPECT_EQ(ptr->abase.dimensions[0], 1);
+    EXPECT_EQ(ptr->abase.dimensions[1], 3);
+    EXPECT_EQ(ptr->abase.values[0], 0);
+    EXPECT_EQ(ptr->abase.values[1], 2);
+    EXPECT_EQ(ptr->abase.values[2], 1);
+    EXPECT_EQ(ptr->fbase.levels[0], "jessica biel");
+    EXPECT_EQ(ptr->fbase.levels[1], "jennifer lawrence");
+    EXPECT_EQ(ptr->fbase.levels[2], "natalie portman");
 }
 
 TEST(LoadTest, NothingCheck) {
     auto out = load("[ { \"type\": \"nothing\" }, { \"type\": \"nothing\" } ]", 0);
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultUnnamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 2);
-    EXPECT_EQ(lptr->values[0]->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(lptr->values[0]->structure(), uzuki::NOTHING);
-    EXPECT_EQ(lptr->values[1]->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(lptr->values[1]->structure(), uzuki::NOTHING);
+    EXPECT_EQ(lptr->values[0]->type(), uzuki::NOTHING);
+    EXPECT_EQ(lptr->values[1]->type(), uzuki::NOTHING);
 }
 
 TEST(LoadTest, DataFrameCheck) {
@@ -215,28 +212,22 @@ TEST(LoadTest, DataFrameCheck) {
         } \
     } ]", 0);
 
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultUnnamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 1);
-    EXPECT_EQ(lptr->values[0]->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(lptr->values[0]->structure(), uzuki::DATA_FRAME);
+    EXPECT_EQ(lptr->values[0]->type(), uzuki::DATA_FRAME);
 
     auto ptr = static_cast<const DefaultDataFrame*>(lptr->values[0].get());
     EXPECT_EQ(ptr->nrows, 3);
     EXPECT_EQ(ptr->colnames[0], "actress");
     EXPECT_EQ(ptr->colnames[1], "score");
     EXPECT_FALSE(ptr->has_names);
-
-    EXPECT_EQ(ptr->columns[0]->type(), uzuki::STRING);
-    EXPECT_EQ(ptr->columns[0]->structure(), uzuki::ARRAY);
-
+    EXPECT_EQ(ptr->columns[0]->type(), uzuki::STRING_ARRAY);
     EXPECT_EQ(ptr->columns[1]->type(), uzuki::INTEGER);
-    EXPECT_EQ(ptr->columns[1]->structure(), uzuki::VECTOR);
 }
 
-TEST(LoadTest, NamedDataFrameCheck) {
+TEST(LoadTest, EmptyDataFrameCheck) {
     auto out = load("[ {\
         \"type\": \"data.frame\", \
         \"rows\": 5, \
@@ -244,13 +235,11 @@ TEST(LoadTest, NamedDataFrameCheck) {
         \"names\": [ \"Natalie Portman\", \"Jennifer Lawrence\", \"Jessica Biel\", \"Scarlett Johansson\", \"Rachel Weisz\" ]  \
     } ]", 0);
 
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultUnnamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 1);
-    EXPECT_EQ(lptr->values[0]->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(lptr->values[0]->structure(), uzuki::DATA_FRAME);
+    EXPECT_EQ(lptr->values[0]->type(), uzuki::DATA_FRAME);
 
     auto ptr = static_cast<const DefaultDataFrame*>(lptr->values[0].get());
     EXPECT_EQ(ptr->colnames.size(), 0);
@@ -261,15 +250,12 @@ TEST(LoadTest, NamedDataFrameCheck) {
 
 TEST(LoadTest, ExternalCheck) {
     auto out = load("[ { \"type\": \"other\", \"index\": 1 }, { \"type\": \"other\", \"index\": 0 } ]", 2);
-    EXPECT_EQ(out->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(out->structure(), uzuki::UNNAMED_LIST);
+    EXPECT_EQ(out->type(), uzuki::LIST);
 
-    auto lptr = static_cast<const DefaultUnnamedList*>(out.get());
+    auto lptr = static_cast<const DefaultList*>(out.get());
     EXPECT_EQ(lptr->size(), 2);
-    EXPECT_EQ(lptr->values[0]->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(lptr->values[0]->structure(), uzuki::OTHER);
-    EXPECT_EQ(lptr->values[1]->type(), uzuki::STRUCTURAL);
-    EXPECT_EQ(lptr->values[1]->structure(), uzuki::OTHER);
+    EXPECT_EQ(lptr->values[0]->type(), uzuki::OTHER);
+    EXPECT_EQ(lptr->values[1]->type(), uzuki::OTHER);
 
     auto ptr = static_cast<const DefaultOther*>(lptr->values[0].get());
     EXPECT_EQ(reinterpret_cast<uintptr_t>(ptr->ptr), 2);

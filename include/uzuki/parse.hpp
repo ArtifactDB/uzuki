@@ -65,28 +65,18 @@ struct ExternalTracker {
  * - `DataFrame* new_DataFrame(size_t r, size_t c)`, which returns a new instance of a `DataFrame` subclass with `r` rows and `c` columns.
  * - `UnnamedList* new_UnnamedList(size_t l)`, which returns a new instance of an `UnnamedList` with length `l`.
  * - `NamedList* new_UnnamedList(size_t l)`, which returns a new instance of a `NamedList` with length `l`.
- *
- * The `Provisioner` class is also expected to contain a `Vector` subclass.
- * This `Provisioner::Vector` class should provide the following static methods:
- *
  * - `IntegerVector* new_Integer(size_t l)`, which returns a new instance of an `IntegerVector` subclass of length `l`.
  * - `NumberVector* new_Number(size_t l)`, which returns a new instance of a `NumberVector` subclass of length `l`.
  * - `StringVector* new_String(size_t l)`, which returns a new instance of a `StringVector` subclass of length `l`.
  * - `BooleanVector* new_Boolean(size_t l)`, which returns a new instance of a `BooleanVector` subclass of length `l`.
  * - `DateVector* new_Date(size_t l)`, which returns a new instance of a `DateVector` subclass of length `l`.
- * - `FactorVector* new_Factor(size_t l, size_t ll)`, which returns a new instance of a `FactorVector` subclass of length `l` and with `ll` unique levels.
- * - `OrderedVector* new_Ordered(size_t l, size_t ll)`, which returns a new instance of a `OrderedVector` subclass of length `l` and with `ll` unique levels.
- *
- * The `Provisioner` class is also expected to contain an `Array` subclass.
- * This `Provisioner::Array` class should provide the following static methods:
- *
+ * - `Factor* new_Factor(size_t l, size_t ll)`, which returns a new instance of a `Factor` subclass of length `l` and with `ll` unique levels.
  * - `IntegerArray* new_Integer(std::vector<size_t> d)`, which returns a new instance of an `IntegerArray` subclass of dimensions `d`.
  * - `NumberArray* new_Number(std::vector<size_t> d)`, which returns a new instance of a `NumberArray` subclass of dimensions `d`.
  * - `StringArray* new_String(std::vector<size_t> d)`, which returns a new instance of a `StringArray` subclass of dimensions `d`.
  * - `BooleanArray* new_Boolean(std::vector<size_t> d)`, which returns a new instance of a `BooleanArray` subclass of dimensions `d`.
  * - `DateArray* new_Date(std::vector<size_t> d)`, which returns a new instance of a `DateArray` subclass of dimensions `d`.
  * - `FactorArray* new_Factor(std::vector<size_t> d, std::vector<size_t> dl)`, which returns a new instance of a `FactorArray` subclass of dimensions `d` and with `ll` unique levels.
- * - `OrderedArray* new_Ordered(std::vector<size_t> d, std::vector<size_t> dl)`, which returns a new instance of a `OrderedArray` subclass of dimensions `d` and with `ll` unique levels.
  *
  * @section external-contract Externals requirements
  * The `Externals` class is expected to provide the following `const` methods:

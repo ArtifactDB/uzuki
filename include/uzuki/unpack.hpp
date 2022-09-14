@@ -56,15 +56,15 @@ void check_names(const Json& j, size_t n, Thing* vec, const std::string& sofar) 
     }
 }
 
-template<class Json, class Function, typename... Ts>
-inline std::shared_ptr<Base> check_factors(const Json& j, const Json& values, const std::string& sofar, Function creator, Ts... args) {
+template<class Provisioner, class Json, typename... Ts>
+std::shared_ptr<Base> check_factors(const Json& j, const Json& values, const std::string& sofar, bool ordered, Ts... args) {
     auto lIt = j.find("levels");
     if (lIt == j.end() || !lIt->is_array()) {
         throw std::runtime_error("\"" + sofar + ".levels\" should be an array"); 
     }
     const auto& levels = *lIt;
 
-    auto fptr = creator(args..., levels.size());
+    auto fptr = Provisioner::new_Factor(args..., levels.size());
     std::shared_ptr<Base> output(fptr);
 
     std::unordered_map<std::string, size_t> levs;
@@ -81,6 +81,10 @@ inline std::shared_ptr<Base> check_factors(const Json& j, const Json& values, co
 
         levs[curlev] = i;
         fptr->set_level(i, curlev); 
+    }
+
+    if (ordered) {
+        fptr->is_ordered();
     }
 
     for (size_t i = 0; i < values.size(); ++i) {
@@ -102,13 +106,13 @@ inline std::shared_ptr<Base> check_factors(const Json& j, const Json& values, co
     return output;
 }
 
-template<class SubProvisioner, class Json, typename... Ts>
-inline std::shared_ptr<Base> check_values(const std::string& type, const Json& values, const Json& j, const std::string& sofar, Ts... args) {
+template<class Provisioner, class Json, typename... Ts>
+std::shared_ptr<Base> check_values(const std::string& type, const Json& values, const Json& j, const std::string& sofar, Ts... args) {
     std::shared_ptr<Base> output;
 
     // Checking values.
     if (type == "string") {
-        auto ptr = SubProvisioner::new_String(args...);
+        auto ptr = Provisioner::new_String(args...);
         output.reset(ptr);
         for (size_t i = 0; i < values.size(); ++i) {
             const auto& x = values[i];
@@ -122,7 +126,7 @@ inline std::shared_ptr<Base> check_values(const std::string& type, const Json& v
         }
 
     } else if (type == "date") {
-        auto ptr = SubProvisioner::new_Date(args...);
+        auto ptr = Provisioner::new_Date(args...);
         output.reset(ptr);
         for (size_t i = 0; i < values.size(); ++i) {
             const auto& x = values[i];
@@ -139,14 +143,11 @@ inline std::shared_ptr<Base> check_values(const std::string& type, const Json& v
             }
         }
 
-    } else if (type == "factor") {
-        output = check_factors(j, values, sofar, SubProvisioner::new_Factor, args...);
-
-    } else if (type == "ordered") {
-        output = check_factors(j, values, sofar, SubProvisioner::new_Ordered, args...);
+    } else if (type == "factor" || type == "ordered") {
+        output = check_factors<Provisioner>(j, values, sofar, (type == "ordered"), args...);
 
     } else if (type == "integer") {
-        auto ptr = SubProvisioner::new_Integer(args...);
+        auto ptr = Provisioner::new_Integer(args...);
         output.reset(ptr);
         for (size_t i = 0; i < values.size(); ++i) {
             const auto& x = values[i];
@@ -171,7 +172,7 @@ inline std::shared_ptr<Base> check_values(const std::string& type, const Json& v
         }
 
     } else if (type == "number") {
-        auto ptr = SubProvisioner::new_Number(args...);
+        auto ptr = Provisioner::new_Number(args...);
         output.reset(ptr);
         for (size_t i = 0; i < values.size(); ++i) {
             const auto& x = values[i];
@@ -185,7 +186,7 @@ inline std::shared_ptr<Base> check_values(const std::string& type, const Json& v
         }
 
     } else if (type == "boolean") {
-        auto ptr = SubProvisioner::new_Boolean(args...);
+        auto ptr = Provisioner::new_Boolean(args...);
         output.reset(ptr);
         for (size_t i = 0; i < values.size(); ++i) {
             const auto& x = values[i];
@@ -216,78 +217,80 @@ inline std::shared_ptr<Base> check_simple_object(const std::string& type, const 
 
     // Checking if we're dealing with an array.
     auto dimIt = j.find("dimensions");
-    if (dimIt != j.end()) {
-        // Storing the dimensions.
-        if (!dimIt->is_array() || dimIt->size() == 0) {
-            throw std::runtime_error("\"" + sofar + ".dimensions\" should be an non-empty array");
-        }
-        const auto& dimensions = *dimIt;
-
-        size_t prod = 1;
-        std::vector<size_t> dims(dimensions.size());
-        for (size_t d = 0; d < dimensions.size(); ++d) {
-            const auto& current = dimensions[d];
-            bool fail = true;
-
-            if (current.is_number()) {
-                double val = current.template get<double>();
-                if (is_integer(val) && val >= 0) {
-                    dims[d] = val;
-                    prod *= val;
-                    fail = false;
-                }
-            }
-            if (fail) {
-                throw std::runtime_error("\"" + sofar + ".dimensions[" + std::to_string(d) + "]\" should be a non-negative integer");
-            }
-        }
-        if (prod != len) {
-            throw std::runtime_error("product of \"" + sofar + ".dimensions\" should be equal to length of \"" + sofar + ".values\"");
-        }
-
-        auto ptr = check_values<typename Provisioner::Array>(type, values, j, sofar, dims);
-        Array* aptr = static_cast<Array*>(ptr.get());
-
-        // Checking if we need to check the names.
-        auto namIt = j.find("names");
-        if (namIt != j.end()) {
-            if (!namIt->is_array() || namIt->size() != dims.size()) {
-                throw std::runtime_error("\"" + sofar + ".names\" should be an array of length equal to \"" + sofar + ".dimensions\"");
-            }
-            const auto& names = *namIt;
-
-            for (size_t d = 0; d < dimensions.size(); ++d) {
-                const auto& dimname = names[d];
-                if (!dimname.is_null()) {
-                    aptr->use_names(d, true);
-                    if (!dimname.is_array() || dimname.size() != dims[d]) {
-                        auto xpath = sofar + ".names[" + std::to_string(d) + "]";
-                        throw std::runtime_error("\"" + xpath + "\" should be an array of length " + std::to_string(dims[d]));
-                    }
-
-                    for (size_t i = 0; i < dimname.size(); ++i) {
-                        const auto& x = dimname[i];
-                        if (!x.is_string()) {
-                            auto xpath = sofar + ".names[" + std::to_string(d) + "]";
-                            throw std::runtime_error("\"" + xpath + "[" + std::to_string(i) + "]\" should be a string");
-                        }
-                        aptr->set_name(d, i, x.template get<std::string>());
-                    }
-                }
-            }
-        }
-        return ptr;
-
-    } else {
-        auto ptr = check_values<typename Provisioner::Vector>(type, values, j, sofar, len);
+    if (dimIt == j.end()) {
+        auto ptr = check_values<Provisioner>(type, values, j, sofar, len);
         Vector* vptr = static_cast<Vector*>(ptr.get());
+
         auto namIt = j.find("names");
         if (namIt != j.end()) {
-            vptr->use_names(true);
+            vptr->use_names();
             check_names(*namIt, values.size(), vptr, sofar + ".names");
         }
+
         return ptr;
     }
+
+    // Storing the dimensions.
+    if (!dimIt->is_array() || dimIt->size() == 0) {
+        throw std::runtime_error("\"" + sofar + ".dimensions\" should be an non-empty array");
+    }
+    const auto& dimensions = *dimIt;
+
+    size_t prod = 1;
+    std::vector<size_t> dims(dimensions.size());
+    for (size_t d = 0; d < dimensions.size(); ++d) {
+        const auto& current = dimensions[d];
+        bool fail = true;
+
+        if (current.is_number()) {
+            double val = current.template get<double>();
+            if (is_integer(val) && val >= 0) {
+                dims[d] = val;
+                prod *= val;
+                fail = false;
+            }
+        }
+        if (fail) {
+            throw std::runtime_error("\"" + sofar + ".dimensions[" + std::to_string(d) + "]\" should be a non-negative integer");
+        }
+    }
+    if (prod != len) {
+        throw std::runtime_error("product of \"" + sofar + ".dimensions\" should be equal to length of \"" + sofar + ".values\"");
+    }
+
+    auto ptr = check_values<Provisioner>(type, values, j, sofar, dims);
+    Array* aptr = static_cast<Array*>(ptr.get());
+
+    // Checking if we need to check the names.
+    auto namIt = j.find("names");
+    if (namIt != j.end()) {
+        if (!namIt->is_array() || namIt->size() != dims.size()) {
+            throw std::runtime_error("\"" + sofar + ".names\" should be an array of length equal to \"" + sofar + ".dimensions\"");
+        }
+        const auto& names = *namIt;
+
+        for (size_t d = 0; d < dimensions.size(); ++d) {
+            const auto& dimname = names[d];
+            if (!dimname.is_null()) {
+                aptr->use_names(d);
+                if (!dimname.is_array() || dimname.size() != dims[d]) {
+                    auto xpath = sofar + ".names[" + std::to_string(d) + "]";
+                    throw std::runtime_error("\"" + xpath + "\" should be an array of length " + std::to_string(dims[d]));
+                }
+
+                for (size_t i = 0; i < dimname.size(); ++i) {
+                    const auto& x = dimname[i];
+                    if (!x.is_string()) {
+                        auto xpath = sofar + ".names[" + std::to_string(d) + "]";
+                        throw std::runtime_error("\"" + xpath + "[" + std::to_string(i) + "]\" should be a string");
+                    }
+                    aptr->set_name(d, i, x.template get<std::string>());
+                }
+            }
+        }
+    }
+
+    return ptr;
 }
 
 template<class Provisioner, class Json, class Externals>
@@ -344,12 +347,12 @@ inline std::shared_ptr<Base> terminal_validator(const Json& j, std::string sofar
             }
 
             auto ptr = check_simple_object<Provisioner>(tIt->template get<std::string>(), curobj, curpath);
-            if (ptr->structure() == VECTOR) {
+            if (is_vector(ptr->type())) {
                 auto vptr = static_cast<Vector*>(ptr.get());
                 if (vptr->size() != nr) {
                     throw std::runtime_error("size of \"" + curpath + "\" is not consistent with \"" + sofar + ".rows\"");
                 }
-            } else if (ptr->structure() == ARRAY) {
+            } else if (is_array(ptr->type())) {
                 auto aptr = static_cast<Array*>(ptr.get());
                 if (aptr->first_dim() != nr) {
                     throw std::runtime_error("first dimension of \"" + curpath + "\" is not consistent with \"" + sofar + ".rows\"");
@@ -364,7 +367,7 @@ inline std::shared_ptr<Base> terminal_validator(const Json& j, std::string sofar
 
         auto namIt = j.find("names");
         if (namIt != j.end()) {
-            dptr->use_names(true);
+            dptr->use_names();
             check_names(*namIt, nr, dptr, sofar + ".names");
         }
 
@@ -383,7 +386,7 @@ inline std::shared_ptr<Base> recursive_validator(const Json& j, std::string sofa
     std::shared_ptr<Base> output;
 
     if (j.is_array()) {
-        auto lptr = Provisioner::new_UnnamedList(j.size());
+        auto lptr = Provisioner::new_List(j.size());
         output.reset(lptr);
         for (size_t i = 0; i < j.size(); ++i) {
             lptr->set(i, recursive_validator<Provisioner>(j[i], sofar + "[" + std::to_string(i) + "]", others));
@@ -406,8 +409,9 @@ inline std::shared_ptr<Base> recursive_validator(const Json& j, std::string sofa
         }
 
         if (!terminated) {
-            auto lptr = Provisioner::new_NamedList(j.size());
+            auto lptr = Provisioner::new_List(j.size());
             output.reset(lptr);
+            lptr->use_names();
 
             size_t i = 0;
             for (const auto& x : j.items()) {
