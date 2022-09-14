@@ -193,16 +193,16 @@ $(function() {
 </div><!-- fragment --><h1>Implementation</h1>
 <h2>Quick start</h2>
 <p >A reference implementation of the validator is provided as a header-only C++ library in <a href="include/uzuki"><code>include/uzuki</code></a>. This is useful for portable deployment in different frameworks like R, Python, etc. Once a JSON file is loaded in using the <a href="https://github.com/nlohmann/json"><code>nlohmann/json</code></a> library, we can check that it complies with the <b>uzuki</b> specification:</p>
-<div class="fragment"><div class="line">#include &quot;uzuki/uzuki.hpp&quot;</div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;uzuki/uzuki.hpp&quot;</span></div>
 <div class="line"> </div>
-<div class="line">auto contents = nlohmann::json::parse(json_str);</div>
+<div class="line"><span class="keyword">auto</span> contents = nlohmann::json::parse(json_str);</div>
 <div class="line">uzuki::validate(contents);</div>
 </div><!-- fragment --><p >This will raise an error if any violations of the specification are observed. If the expected number of "other" objects is known, we can check that there are no more references than expected:</p>
 <div class="fragment"><div class="line">uzuki::validate(contents, num_references);</div>
 </div><!-- fragment --><p >Advanced users can also use the <b>uzuki</b> parser to transform the JSON content into more convenient representations. This is achieved by calling <code>parse()</code> with custom provisioner and external reference classes. For example, <a href="tests/src/test_subclass.h"><code>tests/src/test_subclass.h</code></a> defines the <code>DefaultProvisioner</code> and <code>DefaultExternals</code> classes, which can be used to load the JSON contents into <code>std::vector</code>s for easier downstream operations.</p>
 <div class="fragment"><div class="line">DefaultExternals ext(nexpected);</div>
 <div class="line"><span class="keyword">auto</span> ptr = uzuki::parse&lt;DefaultProvisioner&gt;(contents, ext);</div>
-</div><!-- fragment --><p >Also see the <a href="https://ltla.github.io/comservatory">reference documentation</a> for more details.</p>
+</div><!-- fragment --><p >Also see the <a href="https://ltla.github.io/uzuki">reference documentation</a> for more details.</p>
 <h2>Building projects</h2>
 <p >If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>
 <div class="fragment"><div class="line">include(FetchContent)</div>
