@@ -1,0 +1,6 @@
+<map id="uzuki::Factor" name="uzuki::Factor">
+<area shape="rect" id="node1" title="Interface for a 1&#45;dimensional factor." alt="" coords="73,152,167,177"/>
+<area shape="rect" id="node2" href="$structuzuki_1_1Vector.html" title="Interface for vector&#45;like objects." alt="" coords="5,79,101,104"/>
+<area shape="rect" id="node3" href="$structuzuki_1_1Base.html" title="Base interface for all R objects." alt="" coords="9,5,97,31"/>
+<area shape="rect" id="node4" href="$structuzuki_1_1FactorBase.html" title="Helper interface for factors." alt="" coords="125,79,251,104"/>
+</map>

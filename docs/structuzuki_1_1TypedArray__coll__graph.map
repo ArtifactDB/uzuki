@@ -1,5 +1,5 @@
 <map id="uzuki::TypedArray&lt; T, tt &gt;" name="uzuki::TypedArray&lt; T, tt &gt;">
-<area shape="rect" id="node1" title="Virtual class for an multi&#45;dimensional array&#45;like object with atomic types." alt="" coords="5,152,136,192"/>
-<area shape="rect" id="node2" href="$structuzuki_1_1Array.html" title="Virtual class for an embedded multi&#45;dimensional array&#45;like object." alt="" coords="27,79,115,104"/>
-<area shape="rect" id="node3" href="$structuzuki_1_1Base.html" title="Base class for all embedded R objects." alt="" coords="27,5,115,31"/>
+<area shape="rect" id="node1" title="Interface for a multi&#45;dimensional array with atomic types." alt="" coords="5,152,136,192"/>
+<area shape="rect" id="node2" href="$structuzuki_1_1Array.html" title="Interface for a multi&#45;dimensional array." alt="" coords="27,79,115,104"/>
+<area shape="rect" id="node3" href="$structuzuki_1_1Base.html" title="Base interface for all R objects." alt="" coords="27,5,115,31"/>
 </map>

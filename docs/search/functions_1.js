@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['parse_0',['parse',['../parse_8hpp.html#a5c8eeaa2eb4e8044b65e4a76c7351f42',1,'uzuki::parse(const Json &amp;contents, Externals ext)'],['../parse_8hpp.html#ae5cd97382e97f06138eef0e446bd7339',1,'uzuki::parse(const Json &amp;contents)']]]
+  ['is_5farray_0',['is_array',['../interfaces_8hpp.html#a5094aea3415082e514b6d79d3cdd3e67',1,'uzuki']]],
+  ['is_5fordered_1',['is_ordered',['../structuzuki_1_1FactorBase.html#a2dd9031f5d475360bd8d1126e6c56cb9',1,'uzuki::FactorBase']]],
+  ['is_5fvector_2',['is_vector',['../interfaces_8hpp.html#a2309598d91788226fc2dd289f7e48a4e',1,'uzuki']]]
 ];

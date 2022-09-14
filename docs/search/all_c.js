@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['unnamedlist_0',['UnnamedList',['../structuzuki_1_1UnnamedList.html',1,'uzuki']]],
-  ['use_5fnames_1',['use_names',['../structuzuki_1_1Vector.html#a677aa161989bee572584d61689436603',1,'uzuki::Vector::use_names()'],['../structuzuki_1_1Array.html#a024d22cd08aa2e1e43d2d68342d9fa22',1,'uzuki::Array::use_names()'],['../structuzuki_1_1DataFrame.html#aa7f85e643f385845655bfef76cf0dbe6',1,'uzuki::DataFrame::use_names()']]]
+  ['use_5fnames_0',['use_names',['../structuzuki_1_1Vector.html#a128ee7119efbf426844a50b9ac667969',1,'uzuki::Vector::use_names()'],['../structuzuki_1_1Array.html#aebd69c192162e1ea09477b4cda4bfba3',1,'uzuki::Array::use_names()'],['../structuzuki_1_1List.html#af0015c6be93e8337a740a6914ddc52d5',1,'uzuki::List::use_names()'],['../structuzuki_1_1DataFrame.html#aa41e85b20fd181a089961e3795ed21ce',1,'uzuki::DataFrame::use_names()']]]
 ];

@@ -1,6 +1,4 @@
 <map id="uzuki::List" name="uzuki::List">
-<area shape="rect" id="node1" title="Representation for lists." alt="" coords="103,79,183,104"/>
-<area shape="rect" id="node3" href="$structuzuki_1_1NamedList.html" title="Representation for named lists." alt="" coords="5,152,128,177"/>
-<area shape="rect" id="node4" href="$structuzuki_1_1UnnamedList.html" title="Representation for unnamed lists." alt="" coords="152,152,288,177"/>
-<area shape="rect" id="node2" href="$structuzuki_1_1Base.html" title="Base class for all embedded R objects." alt="" coords="99,5,187,31"/>
+<area shape="rect" id="node1" title="Interface for lists." alt="" coords="9,79,89,104"/>
+<area shape="rect" id="node2" href="$structuzuki_1_1Base.html" title="Base interface for all R objects." alt="" coords="5,5,93,31"/>
 </map>

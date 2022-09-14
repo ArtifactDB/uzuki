@@ -219,26 +219,18 @@ Provisioner requirements</h1>
 <li><code>DataFrame* new_DataFrame(size_t r, size_t c)</code>, which returns a new instance of a <code>DataFrame</code> subclass with <code>r</code> rows and <code>c</code> columns.</li>
 <li><code>UnnamedList* new_UnnamedList(size_t l)</code>, which returns a new instance of an <code>UnnamedList</code> with length <code>l</code>.</li>
 <li><code>NamedList* new_UnnamedList(size_t l)</code>, which returns a new instance of a <code>NamedList</code> with length <code>l</code>.</li>
-</ul>
-<p >The <code>Provisioner</code> class is also expected to contain a <code>Vector</code> subclass. This <code>Provisioner::Vector</code> class should provide the following static methods:</p>
-<ul>
 <li><code>IntegerVector* new_Integer(size_t l)</code>, which returns a new instance of an <code>IntegerVector</code> subclass of length <code>l</code>.</li>
 <li><code>NumberVector* new_Number(size_t l)</code>, which returns a new instance of a <code>NumberVector</code> subclass of length <code>l</code>.</li>
 <li><code>StringVector* new_String(size_t l)</code>, which returns a new instance of a <code>StringVector</code> subclass of length <code>l</code>.</li>
 <li><code>BooleanVector* new_Boolean(size_t l)</code>, which returns a new instance of a <code>BooleanVector</code> subclass of length <code>l</code>.</li>
 <li><code>DateVector* new_Date(size_t l)</code>, which returns a new instance of a <code>DateVector</code> subclass of length <code>l</code>.</li>
-<li><code>FactorVector* new_Factor(size_t l, size_t ll)</code>, which returns a new instance of a <code>FactorVector</code> subclass of length <code>l</code> and with <code>ll</code> unique levels.</li>
-<li><code>OrderedVector* new_Ordered(size_t l, size_t ll)</code>, which returns a new instance of a <code>OrderedVector</code> subclass of length <code>l</code> and with <code>ll</code> unique levels.</li>
-</ul>
-<p >The <code>Provisioner</code> class is also expected to contain an <code>Array</code> subclass. This <code>Provisioner::Array</code> class should provide the following static methods:</p>
-<ul>
+<li><code>Factor* new_Factor(size_t l, size_t ll)</code>, which returns a new instance of a <code>Factor</code> subclass of length <code>l</code> and with <code>ll</code> unique levels.</li>
 <li><code>IntegerArray* new_Integer(std::vector&lt;size_t&gt; d)</code>, which returns a new instance of an <code>IntegerArray</code> subclass of dimensions <code>d</code>.</li>
 <li><code>NumberArray* new_Number(std::vector&lt;size_t&gt; d)</code>, which returns a new instance of a <code>NumberArray</code> subclass of dimensions <code>d</code>.</li>
 <li><code>StringArray* new_String(std::vector&lt;size_t&gt; d)</code>, which returns a new instance of a <code>StringArray</code> subclass of dimensions <code>d</code>.</li>
 <li><code>BooleanArray* new_Boolean(std::vector&lt;size_t&gt; d)</code>, which returns a new instance of a <code>BooleanArray</code> subclass of dimensions <code>d</code>.</li>
 <li><code>DateArray* new_Date(std::vector&lt;size_t&gt; d)</code>, which returns a new instance of a <code>DateArray</code> subclass of dimensions <code>d</code>.</li>
 <li><code>FactorArray* new_Factor(std::vector&lt;size_t&gt; d, std::vector&lt;size_t&gt; dl)</code>, which returns a new instance of a <code>FactorArray</code> subclass of dimensions <code>d</code> and with <code>ll</code> unique levels.</li>
-<li><code>OrderedArray* new_Ordered(std::vector&lt;size_t&gt; d, std::vector&lt;size_t&gt; dl)</code>, which returns a new instance of a <code>OrderedArray</code> subclass of dimensions <code>d</code> and with <code>ll</code> unique levels.</li>
 </ul>
 <h1><a class="anchor" id="external-contract"></a>
 Externals requirements</h1>

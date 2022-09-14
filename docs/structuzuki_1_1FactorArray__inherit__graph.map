@@ -1,0 +1,6 @@
+<map id="uzuki::FactorArray" name="uzuki::FactorArray">
+<area shape="rect" id="node1" title="Interface for multi&#45;dimensional factor arrays." alt="" coords="52,152,177,177"/>
+<area shape="rect" id="node2" href="$structuzuki_1_1Array.html" title="Interface for a multi&#45;dimensional array." alt="" coords="5,79,93,104"/>
+<area shape="rect" id="node3" href="$structuzuki_1_1Base.html" title="Base interface for all R objects." alt="" coords="5,5,93,31"/>
+<area shape="rect" id="node4" href="$structuzuki_1_1FactorBase.html" title="Helper interface for factors." alt="" coords="117,79,243,104"/>
+</map>

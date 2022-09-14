@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['namedlist_0',['NamedList',['../structuzuki_1_1NamedList.html',1,'uzuki']]],
-  ['nothing_1',['Nothing',['../structuzuki_1_1Nothing.html',1,'uzuki']]],
-  ['numberarray_2',['NumberArray',['../interfaces_8hpp.html#a02c35d71aef5cd21dbc240ffc42502f2',1,'uzuki']]],
-  ['numbervector_3',['NumberVector',['../interfaces_8hpp.html#a4b2e965b05a93e716306185ac589b2b3',1,'uzuki']]]
+  ['nothing_0',['Nothing',['../structuzuki_1_1Nothing.html',1,'uzuki']]],
+  ['numberarray_1',['NumberArray',['../interfaces_8hpp.html#a25fc844de40af6285da9a6ca39b737dc',1,'uzuki']]],
+  ['numbervector_2',['NumberVector',['../interfaces_8hpp.html#a4b2e965b05a93e716306185ac589b2b3',1,'uzuki']]]
 ];

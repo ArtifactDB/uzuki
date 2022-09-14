@@ -82,7 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Representation for lists.  
+<p>Interface for lists.  
  <a href="structuzuki_1_1List.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="interfaces_8hpp_source.html">interfaces.hpp</a>&gt;</code></p>
@@ -91,10 +91,8 @@ Inheritance diagram for uzuki::List:</div>
 <div class="dyncontent">
 <div class="center"><img src="structuzuki_1_1List__inherit__graph.png" border="0" usemap="#auzuki_1_1List_inherit__map" alt="Inheritance graph"/></div>
 <map name="auzuki_1_1List_inherit__map" id="auzuki_1_1List_inherit__map">
-<area shape="rect" title="Representation for lists." alt="" coords="103,79,183,104"/>
-<area shape="rect" href="structuzuki_1_1NamedList.html" title="Representation for named lists." alt="" coords="5,152,128,177"/>
-<area shape="rect" href="structuzuki_1_1UnnamedList.html" title="Representation for unnamed lists." alt="" coords="152,152,288,177"/>
-<area shape="rect" href="structuzuki_1_1Base.html" title="Base class for all embedded R objects." alt="" coords="99,5,187,31"/>
+<area shape="rect" title="Interface for lists." alt="" coords="9,79,89,104"/>
+<area shape="rect" href="structuzuki_1_1Base.html" title="Base interface for all R objects." alt="" coords="5,5,93,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -102,8 +100,8 @@ Collaboration diagram for uzuki::List:</div>
 <div class="dyncontent">
 <div class="center"><img src="structuzuki_1_1List__coll__graph.png" border="0" usemap="#auzuki_1_1List_coll__map" alt="Collaboration graph"/></div>
 <map name="auzuki_1_1List_coll__map" id="auzuki_1_1List_coll__map">
-<area shape="rect" title="Representation for lists." alt="" coords="9,79,89,104"/>
-<area shape="rect" href="structuzuki_1_1Base.html" title="Base class for all embedded R objects." alt="" coords="5,5,93,31"/>
+<area shape="rect" title="Interface for lists." alt="" coords="9,79,89,104"/>
+<area shape="rect" href="structuzuki_1_1Base.html" title="Base interface for all R objects." alt="" coords="5,5,93,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -115,14 +113,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adefb6cf170ab1bb39741b689820892a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10ad3d2e7f994c7df41ff47658e803d0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1List.html#a10ad3d2e7f994c7df41ff47658e803d0">set</a> (size_t, std::shared_ptr&lt; <a class="el" href="structuzuki_1_1Base.html">Base</a> &gt; v)=0</td></tr>
 <tr class="separator:a10ad3d2e7f994c7df41ff47658e803d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_structuzuki_1_1Base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structuzuki_1_1Base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structuzuki_1_1Base.html">uzuki::Base</a></td></tr>
-<tr class="memitem:a9a146cc6fb01781b05921d054b9e1e87 inherit pub_methods_structuzuki_1_1Base"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="interfaces_8hpp.html#a90beb764de6620dd6add3b601a147d53">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Base.html#a9a146cc6fb01781b05921d054b9e1e87">type</a> () const =0</td></tr>
-<tr class="separator:a9a146cc6fb01781b05921d054b9e1e87 inherit pub_methods_structuzuki_1_1Base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e4a36a134427de84a5772efad95da45 inherit pub_methods_structuzuki_1_1Base"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="interfaces_8hpp.html#aef66445e9a6ace1c33a89f11cce3ba12">Structure</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Base.html#a5e4a36a134427de84a5772efad95da45">structure</a> () const =0</td></tr>
-<tr class="separator:a5e4a36a134427de84a5772efad95da45 inherit pub_methods_structuzuki_1_1Base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0015c6be93e8337a740a6914ddc52d5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1List.html#af0015c6be93e8337a740a6914ddc52d5">use_names</a> ()=0</td></tr>
+<tr class="separator:af0015c6be93e8337a740a6914ddc52d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a603037167d64dc771020affd7886c0d3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1List.html#a603037167d64dc771020affd7886c0d3">set_name</a> (size_t i, std::string n)=0</td></tr>
+<tr class="separator:a603037167d64dc771020affd7886c0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a146cc6fb01781b05921d054b9e1e87"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="interfaces_8hpp.html#a90beb764de6620dd6add3b601a147d53">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Base.html#a9a146cc6fb01781b05921d054b9e1e87">type</a> () const =0</td></tr>
+<tr class="separator:a9a146cc6fb01781b05921d054b9e1e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Representation for lists. </p>
+<div class="textblock"><p >Interface for lists. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a10ad3d2e7f994c7df41ff47658e803d0" name="a10ad3d2e7f994c7df41ff47658e803d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a10ad3d2e7f994c7df41ff47658e803d0">&#9670;&#160;</a></span>set()</h2>
@@ -157,10 +156,55 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Set an element of the list.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>Index of the list element. </td></tr>
     <tr><td class="paramname">v</td><td>Value of the list element. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a603037167d64dc771020affd7886c0d3" name="a603037167d64dc771020affd7886c0d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a603037167d64dc771020affd7886c0d3">&#9670;&#160;</a></span>set_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void uzuki::List::set_name </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Set the name of an element of the list.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>Index of a list element. </td></tr>
+    <tr><td class="paramname">n</td><td>Name for the list element. </td></tr>
   </table>
   </dd>
 </dl>
@@ -215,9 +259,35 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The data type of the element. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The data type. </dd></dl>
 
 <p>Implements <a class="el" href="structuzuki_1_1Base.html#a9a146cc6fb01781b05921d054b9e1e87">uzuki::Base</a>.</p>
+
+</div>
+</div>
+<a id="af0015c6be93e8337a740a6914ddc52d5" name="af0015c6be93e8337a740a6914ddc52d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0015c6be93e8337a740a6914ddc52d5">&#9670;&#160;</a></span>use_names()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void uzuki::List::use_names </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Indicate that the elements of the list are named. If not called, it is assumed that the list is unnamed. </p>
 
 </div>
 </div>

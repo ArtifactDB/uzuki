@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['numberarray_0',['NumberArray',['../interfaces_8hpp.html#a02c35d71aef5cd21dbc240ffc42502f2',1,'uzuki']]],
-  ['numbervector_1',['NumberVector',['../interfaces_8hpp.html#a4b2e965b05a93e716306185ac589b2b3',1,'uzuki']]]
+  ['stringarray_0',['StringArray',['../interfaces_8hpp.html#aa87c3ba49a75e8194a3027463ecbe4ec',1,'uzuki']]],
+  ['stringvector_1',['StringVector',['../interfaces_8hpp.html#a6364f0b982e1e6c21c33b8cec102a60b',1,'uzuki']]]
 ];

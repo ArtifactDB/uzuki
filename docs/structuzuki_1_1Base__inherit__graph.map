@@ -1,15 +1,13 @@
 <map id="uzuki::Base" name="uzuki::Base">
-<area shape="rect" id="node1" title="Base class for all embedded R objects." alt="" coords="5,193,93,218"/>
-<area shape="rect" id="node2" href="$structuzuki_1_1Array.html" title="Virtual class for an embedded multi&#45;dimensional array&#45;like object." alt="" coords="159,69,247,94"/>
-<area shape="rect" id="node5" href="$structuzuki_1_1DataFrame.html" title="Representation for data frames." alt="" coords="141,118,264,143"/>
-<area shape="rect" id="node6" href="$structuzuki_1_1List.html" title="Representation for lists." alt="" coords="163,167,243,193"/>
-<area shape="rect" id="node9" href="$structuzuki_1_1Nothing.html" title="Representation of R&#39;s NULL." alt="" coords="151,217,254,242"/>
-<area shape="rect" id="node10" href="$structuzuki_1_1Other.html" title="Representation for unsupported objects." alt="" coords="157,266,248,291"/>
-<area shape="rect" id="node11" href="$structuzuki_1_1Vector.html" title="Base class for all embedded vector&#45;like objects." alt="" coords="155,315,251,341"/>
-<area shape="rect" id="node3" href="$structuzuki_1_1SomeFactorArray.html" title="Base class for embedded multi&#45;dimensional factor arrays." alt="" coords="316,5,475,45"/>
-<area shape="rect" id="node4" href="$structuzuki_1_1TypedArray.html" title="Virtual class for an multi&#45;dimensional array&#45;like object with atomic types." alt="" coords="330,69,461,109"/>
-<area shape="rect" id="node7" href="$structuzuki_1_1NamedList.html" title="Representation for named lists." alt="" coords="334,141,457,166"/>
-<area shape="rect" id="node8" href="$structuzuki_1_1UnnamedList.html" title="Representation for unnamed lists." alt="" coords="327,190,463,215"/>
-<area shape="rect" id="node12" href="$structuzuki_1_1SomeFactorVector.html" title="Base class for embedded factors." alt="" coords="312,255,479,295"/>
-<area shape="rect" id="node13" href="$structuzuki_1_1TypedVector.html" title="Base class for embedded vectors with atomic types." alt="" coords="330,319,461,359"/>
+<area shape="rect" id="node1" title="Base interface for all R objects." alt="" coords="5,157,93,183"/>
+<area shape="rect" id="node2" href="$structuzuki_1_1Array.html" title="Interface for a multi&#45;dimensional array." alt="" coords="159,33,247,59"/>
+<area shape="rect" id="node5" href="$structuzuki_1_1DataFrame.html" title="Representation for data frames." alt="" coords="141,83,264,108"/>
+<area shape="rect" id="node6" href="$structuzuki_1_1List.html" title="Interface for lists." alt="" coords="163,132,243,157"/>
+<area shape="rect" id="node7" href="$structuzuki_1_1Nothing.html" title="Representation of R&#39;s NULL." alt="" coords="151,181,254,207"/>
+<area shape="rect" id="node8" href="$structuzuki_1_1Other.html" title="Interface for unsupported objects." alt="" coords="157,231,248,256"/>
+<area shape="rect" id="node9" href="$structuzuki_1_1Vector.html" title="Interface for vector&#45;like objects." alt="" coords="155,280,251,305"/>
+<area shape="rect" id="node3" href="$structuzuki_1_1FactorArray.html" title="Interface for multi&#45;dimensional factor arrays." alt="" coords="315,5,440,31"/>
+<area shape="rect" id="node4" href="$structuzuki_1_1TypedArray.html" title="Interface for a multi&#45;dimensional array with atomic types." alt="" coords="312,55,443,95"/>
+<area shape="rect" id="node10" href="$structuzuki_1_1Factor.html" title="Interface for a 1&#45;dimensional factor." alt="" coords="330,251,425,276"/>
+<area shape="rect" id="node11" href="$structuzuki_1_1TypedVector.html" title="Interface for atomic vectors." alt="" coords="312,301,443,341"/>
 </map>

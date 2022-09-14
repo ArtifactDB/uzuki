@@ -1,11 +1,11 @@
 var indexSectionsWithContent =
 {
   0: "abdfilnoprstuv",
-  1: "abdlnostuv",
+  1: "abdflnotv",
   2: "ipv",
-  3: "fpstuv",
-  4: "bdfinos",
-  5: "st",
+  3: "fipstuv",
+  4: "bdins",
+  5: "t",
   6: "r"
 };
 

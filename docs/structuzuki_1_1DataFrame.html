@@ -92,7 +92,7 @@ Inheritance diagram for uzuki::DataFrame:</div>
 <div class="center"><img src="structuzuki_1_1DataFrame__inherit__graph.png" border="0" usemap="#auzuki_1_1DataFrame_inherit__map" alt="Inheritance graph"/></div>
 <map name="auzuki_1_1DataFrame_inherit__map" id="auzuki_1_1DataFrame_inherit__map">
 <area shape="rect" title="Representation for data frames." alt="" coords="5,79,128,104"/>
-<area shape="rect" href="structuzuki_1_1Base.html" title="Base class for all embedded R objects." alt="" coords="23,5,111,31"/>
+<area shape="rect" href="structuzuki_1_1Base.html" title="Base interface for all R objects." alt="" coords="23,5,111,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -101,26 +101,22 @@ Collaboration diagram for uzuki::DataFrame:</div>
 <div class="center"><img src="structuzuki_1_1DataFrame__coll__graph.png" border="0" usemap="#auzuki_1_1DataFrame_coll__map" alt="Collaboration graph"/></div>
 <map name="auzuki_1_1DataFrame_coll__map" id="auzuki_1_1DataFrame_coll__map">
 <area shape="rect" title="Representation for data frames." alt="" coords="5,79,128,104"/>
-<area shape="rect" href="structuzuki_1_1Base.html" title="Base class for all embedded R objects." alt="" coords="23,5,111,31"/>
+<area shape="rect" href="structuzuki_1_1Base.html" title="Base interface for all R objects." alt="" coords="23,5,111,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a59e78439d29c7533a2bf4f954f2cd2c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interfaces_8hpp.html#aef66445e9a6ace1c33a89f11cce3ba12">Structure</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1DataFrame.html#a59e78439d29c7533a2bf4f954f2cd2c2">structure</a> () const</td></tr>
-<tr class="separator:a59e78439d29c7533a2bf4f954f2cd2c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a403519e41e5259f105e18987b88aebbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interfaces_8hpp.html#a90beb764de6620dd6add3b601a147d53">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1DataFrame.html#a403519e41e5259f105e18987b88aebbb">type</a> () const</td></tr>
 <tr class="separator:a403519e41e5259f105e18987b88aebbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa14a52afbc6c6d0e083c8bebaed87b56"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1DataFrame.html#aa14a52afbc6c6d0e083c8bebaed87b56">set</a> (size_t i, std::string n, std::shared_ptr&lt; <a class="el" href="structuzuki_1_1Base.html">Base</a> &gt; v)=0</td></tr>
 <tr class="separator:aa14a52afbc6c6d0e083c8bebaed87b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7f85e643f385845655bfef76cf0dbe6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1DataFrame.html#aa7f85e643f385845655bfef76cf0dbe6">use_names</a> (bool u)=0</td></tr>
-<tr class="separator:aa7f85e643f385845655bfef76cf0dbe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa41e85b20fd181a089961e3795ed21ce"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1DataFrame.html#aa41e85b20fd181a089961e3795ed21ce">use_names</a> ()=0</td></tr>
+<tr class="separator:aa41e85b20fd181a089961e3795ed21ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac270d2aa9ad294e1ce36c4e9dc4ae85b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1DataFrame.html#ac270d2aa9ad294e1ce36c4e9dc4ae85b">set_name</a> (size_t ir, std::string nr)=0</td></tr>
 <tr class="separator:ac270d2aa9ad294e1ce36c4e9dc4ae85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a146cc6fb01781b05921d054b9e1e87"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="interfaces_8hpp.html#a90beb764de6620dd6add3b601a147d53">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Base.html#a9a146cc6fb01781b05921d054b9e1e87">type</a> () const =0</td></tr>
 <tr class="separator:a9a146cc6fb01781b05921d054b9e1e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e4a36a134427de84a5772efad95da45"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="interfaces_8hpp.html#aef66445e9a6ace1c33a89f11cce3ba12">Structure</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Base.html#a5e4a36a134427de84a5772efad95da45">structure</a> () const =0</td></tr>
-<tr class="separator:a5e4a36a134427de84a5772efad95da45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Representation for data frames. </p>
@@ -164,6 +160,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Set a column of the data frame. This requires an associated name for the column.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>Index of the data frame column. </td></tr>
@@ -208,6 +205,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Set the name of a row of the data frame.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ir</td><td>Index of the data frame row. </td></tr>
@@ -215,34 +213,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a59e78439d29c7533a2bf4f954f2cd2c2" name="a59e78439d29c7533a2bf4f954f2cd2c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59e78439d29c7533a2bf4f954f2cd2c2">&#9670;&#160;</a></span>structure()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="interfaces_8hpp.html#aef66445e9a6ace1c33a89f11cce3ba12">Structure</a> uzuki::DataFrame::structure </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The structural type of the element. </dd></dl>
-
-<p>Implements <a class="el" href="structuzuki_1_1Base.html#a5e4a36a134427de84a5772efad95da45">uzuki::Base</a>.</p>
 
 </div>
 </div>
@@ -268,14 +238,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The data type of the element. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The data type. </dd></dl>
 
 <p>Implements <a class="el" href="structuzuki_1_1Base.html#a9a146cc6fb01781b05921d054b9e1e87">uzuki::Base</a>.</p>
 
 </div>
 </div>
-<a id="aa7f85e643f385845655bfef76cf0dbe6" name="aa7f85e643f385845655bfef76cf0dbe6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7f85e643f385845655bfef76cf0dbe6">&#9670;&#160;</a></span>use_names()</h2>
+<a id="aa41e85b20fd181a089961e3795ed21ce" name="aa41e85b20fd181a089961e3795ed21ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa41e85b20fd181a089961e3795ed21ce">&#9670;&#160;</a></span>use_names()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,8 +256,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void uzuki::DataFrame::use_names </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>u</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -297,12 +266,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">u</td><td>Whether the rows are named. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p >Indicate that the rows are named. If this is not set, it is assumed that the rows are unnamed. </p>
 
 </div>
 </div>

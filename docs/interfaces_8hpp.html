@@ -78,7 +78,8 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">interfaces.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -107,40 +108,37 @@ Include dependency graph for interfaces.hpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Base.html">uzuki::Base</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structuzuki_1_1Base.html" title="Base class for all embedded R objects.">Base</a> class for all embedded R objects.  <a href="structuzuki_1_1Base.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structuzuki_1_1Base.html" title="Base interface for all R objects.">Base</a> interface for all R objects.  <a href="structuzuki_1_1Base.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Vector.html">uzuki::Vector</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structuzuki_1_1Base.html" title="Base class for all embedded R objects.">Base</a> class for all embedded vector-like objects.  <a href="structuzuki_1_1Vector.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for vector-like objects.  <a href="structuzuki_1_1Vector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1TypedVector.html">uzuki::TypedVector&lt; T, tt &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structuzuki_1_1Base.html" title="Base class for all embedded R objects.">Base</a> class for embedded vectors with atomic types.  <a href="structuzuki_1_1TypedVector.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for atomic vectors.  <a href="structuzuki_1_1TypedVector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1SomeFactorVector.html">uzuki::SomeFactorVector&lt; tt &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structuzuki_1_1Base.html" title="Base class for all embedded R objects.">Base</a> class for embedded factors.  <a href="structuzuki_1_1SomeFactorVector.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1FactorBase.html">uzuki::FactorBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper interface for factors.  <a href="structuzuki_1_1FactorBase.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Factor.html">uzuki::Factor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a 1-dimensional factor.  <a href="structuzuki_1_1Factor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Array.html">uzuki::Array</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual class for an embedded multi-dimensional array-like object.  <a href="structuzuki_1_1Array.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a multi-dimensional array.  <a href="structuzuki_1_1Array.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1TypedArray.html">uzuki::TypedArray&lt; T, tt &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual class for an multi-dimensional array-like object with atomic types.  <a href="structuzuki_1_1TypedArray.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for a multi-dimensional array with atomic types.  <a href="structuzuki_1_1TypedArray.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1SomeFactorArray.html">uzuki::SomeFactorArray&lt; tt &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structuzuki_1_1Base.html" title="Base class for all embedded R objects.">Base</a> class for embedded multi-dimensional factor arrays.  <a href="structuzuki_1_1SomeFactorArray.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1FactorArray.html">uzuki::FactorArray</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for multi-dimensional factor arrays.  <a href="structuzuki_1_1FactorArray.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Nothing.html">uzuki::Nothing</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representation of R's <code>NULL</code>.  <a href="structuzuki_1_1Nothing.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1Other.html">uzuki::Other</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representation for unsupported objects.  <a href="structuzuki_1_1Other.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for unsupported objects.  <a href="structuzuki_1_1Other.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1List.html">uzuki::List</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representation for lists.  <a href="structuzuki_1_1List.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1UnnamedList.html">uzuki::UnnamedList</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representation for unnamed lists.  <a href="structuzuki_1_1UnnamedList.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1NamedList.html">uzuki::NamedList</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representation for named lists.  <a href="structuzuki_1_1NamedList.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface for lists.  <a href="structuzuki_1_1List.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuzuki_1_1DataFrame.html">uzuki::DataFrame</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representation for data frames.  <a href="structuzuki_1_1DataFrame.html#details">More...</a><br /></td></tr>
@@ -158,24 +156,16 @@ Typedefs</h2></td></tr>
 <tr class="separator:a23bfc4d5db4796c9615f2dbac33f7989"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a910ca4fb4873bbb9a047921ef0047b7e"><td class="memItemLeft" align="right" valign="top">typedef TypedVector&lt; std::string, DATE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a910ca4fb4873bbb9a047921ef0047b7e">uzuki::DateVector</a></td></tr>
 <tr class="separator:a910ca4fb4873bbb9a047921ef0047b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac513ad5c601bbd86e02c785ffe123a05"><td class="memItemLeft" align="right" valign="top">typedef SomeFactorVector&lt; FACTOR &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#ac513ad5c601bbd86e02c785ffe123a05">uzuki::FactorVector</a></td></tr>
-<tr class="separator:ac513ad5c601bbd86e02c785ffe123a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e4fc6c726d69591a228e0b6d2ffe6a7"><td class="memItemLeft" align="right" valign="top">typedef SomeFactorVector&lt; ORDERED &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a6e4fc6c726d69591a228e0b6d2ffe6a7">uzuki::OrderedVector</a></td></tr>
-<tr class="separator:a6e4fc6c726d69591a228e0b6d2ffe6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9d160531fd6f608cb680761ab5e1539"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; int32_t, INTEGER &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#ad9d160531fd6f608cb680761ab5e1539">uzuki::IntegerArray</a></td></tr>
-<tr class="separator:ad9d160531fd6f608cb680761ab5e1539"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02c35d71aef5cd21dbc240ffc42502f2"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; double, NUMBER &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a02c35d71aef5cd21dbc240ffc42502f2">uzuki::NumberArray</a></td></tr>
-<tr class="separator:a02c35d71aef5cd21dbc240ffc42502f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f9dba86d5f8f271d6aa2a97178c84c9"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; std::string, STRING &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a1f9dba86d5f8f271d6aa2a97178c84c9">uzuki::StringArray</a></td></tr>
-<tr class="separator:a1f9dba86d5f8f271d6aa2a97178c84c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb2d059d07f7c259b23a1dce810437ce"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; unsigned char, BOOLEAN &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#acb2d059d07f7c259b23a1dce810437ce">uzuki::BooleanArray</a></td></tr>
-<tr class="separator:acb2d059d07f7c259b23a1dce810437ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0855a4ca14dd722395c9ac338066804"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; std::string, DATE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#af0855a4ca14dd722395c9ac338066804">uzuki::DateArray</a></td></tr>
-<tr class="separator:af0855a4ca14dd722395c9ac338066804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a649561c7162f3d1e9efaa9d3a3c8172d"><td class="memItemLeft" align="right" valign="top">typedef SomeFactorArray&lt; FACTOR &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a649561c7162f3d1e9efaa9d3a3c8172d">uzuki::FactorArray</a></td></tr>
-<tr class="separator:a649561c7162f3d1e9efaa9d3a3c8172d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8771b34a78020745f7c71c04548cf02"><td class="memItemLeft" align="right" valign="top">typedef SomeFactorArray&lt; ORDERED &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#ae8771b34a78020745f7c71c04548cf02">uzuki::OrderedArray</a></td></tr>
-<tr class="separator:ae8771b34a78020745f7c71c04548cf02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bbfaeed8d27198b56689e896c2e6036"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; int32_t, INTEGER_ARRAY &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a2bbfaeed8d27198b56689e896c2e6036">uzuki::IntegerArray</a></td></tr>
+<tr class="separator:a2bbfaeed8d27198b56689e896c2e6036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25fc844de40af6285da9a6ca39b737dc"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; double, NUMBER_ARRAY &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a25fc844de40af6285da9a6ca39b737dc">uzuki::NumberArray</a></td></tr>
+<tr class="separator:a25fc844de40af6285da9a6ca39b737dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa87c3ba49a75e8194a3027463ecbe4ec"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; std::string, STRING_ARRAY &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#aa87c3ba49a75e8194a3027463ecbe4ec">uzuki::StringArray</a></td></tr>
+<tr class="separator:aa87c3ba49a75e8194a3027463ecbe4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1225404464466eb4cff333159d5c2610"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; unsigned char, BOOLEAN_ARRAY &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a1225404464466eb4cff333159d5c2610">uzuki::BooleanArray</a></td></tr>
+<tr class="separator:a1225404464466eb4cff333159d5c2610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1595e381bb14e312e6513ecb5bd1fb8e"><td class="memItemLeft" align="right" valign="top">typedef TypedArray&lt; std::string, DATE_ARRAY &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a1595e381bb14e312e6513ecb5bd1fb8e">uzuki::DateArray</a></td></tr>
+<tr class="separator:a1595e381bb14e312e6513ecb5bd1fb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -186,40 +176,45 @@ Enumerations</h2></td></tr>
 , <b>BOOLEAN</b>
 , <br />
 &#160;&#160;<b>FACTOR</b>
-, <b>ORDERED</b>
 , <b>DATE</b>
-, <b>STRUCTURAL</b>
-<br />
- }</td></tr>
-<tr class="separator:a90beb764de6620dd6add3b601a147d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef66445e9a6ace1c33a89f11cce3ba12"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#aef66445e9a6ace1c33a89f11cce3ba12">uzuki::Structure</a> { <br />
-&#160;&#160;<b>VECTOR</b>
-, <b>ARRAY</b>
-, <b>DATA_FRAME</b>
-, <b>UNNAMED_LIST</b>
+, <b>INTEGER_ARRAY</b>
+, <b>NUMBER_ARRAY</b>
 , <br />
-&#160;&#160;<b>NAMED_LIST</b>
+&#160;&#160;<b>STRING_ARRAY</b>
+, <b>BOOLEAN_ARRAY</b>
+, <b>FACTOR_ARRAY</b>
+, <b>DATE_ARRAY</b>
+, <br />
+&#160;&#160;<b>DATA_FRAME</b>
+, <b>LIST</b>
 , <b>NOTHING</b>
 , <b>OTHER</b>
 <br />
  }</td></tr>
-<tr class="separator:aef66445e9a6ace1c33a89f11cce3ba12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a90beb764de6620dd6add3b601a147d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a5094aea3415082e514b6d79d3cdd3e67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a5094aea3415082e514b6d79d3cdd3e67">uzuki::is_array</a> (Type t)</td></tr>
+<tr class="separator:a5094aea3415082e514b6d79d3cdd3e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2309598d91788226fc2dd289f7e48a4e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaces_8hpp.html#a2309598d91788226fc2dd289f7e48a4e">uzuki::is_vector</a> (Type t)</td></tr>
+<tr class="separator:a2309598d91788226fc2dd289f7e48a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Defines the interfaces to use in JSON parsing. </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
-<a id="acb2d059d07f7c259b23a1dce810437ce" name="acb2d059d07f7c259b23a1dce810437ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb2d059d07f7c259b23a1dce810437ce">&#9670;&#160;</a></span>BooleanArray</h2>
+<a id="a1225404464466eb4cff333159d5c2610" name="a1225404464466eb4cff333159d5c2610"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1225404464466eb4cff333159d5c2610">&#9670;&#160;</a></span>BooleanArray</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef TypedArray&lt;unsigned char, BOOLEAN&gt; <a class="el" href="interfaces_8hpp.html#acb2d059d07f7c259b23a1dce810437ce">uzuki::BooleanArray</a></td>
+          <td class="memname">typedef TypedArray&lt;unsigned char, BOOLEAN_ARRAY&gt; <a class="el" href="interfaces_8hpp.html#a1225404464466eb4cff333159d5c2610">uzuki::BooleanArray</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual multi-dimensional array of booleans. </p>
+<p >Interface for a multi-dimensional array of booleans. </p>
 
 </div>
 </div>
@@ -234,22 +229,22 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual vector of booleans. </p>
+<p >Interface for a boolean vector. </p>
 
 </div>
 </div>
-<a id="af0855a4ca14dd722395c9ac338066804" name="af0855a4ca14dd722395c9ac338066804"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0855a4ca14dd722395c9ac338066804">&#9670;&#160;</a></span>DateArray</h2>
+<a id="a1595e381bb14e312e6513ecb5bd1fb8e" name="a1595e381bb14e312e6513ecb5bd1fb8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1595e381bb14e312e6513ecb5bd1fb8e">&#9670;&#160;</a></span>DateArray</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef TypedArray&lt;std::string, DATE&gt; <a class="el" href="interfaces_8hpp.html#af0855a4ca14dd722395c9ac338066804">uzuki::DateArray</a></td>
+          <td class="memname">typedef TypedArray&lt;std::string, DATE_ARRAY&gt; <a class="el" href="interfaces_8hpp.html#a1595e381bb14e312e6513ecb5bd1fb8e">uzuki::DateArray</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual multi-dimensional array of dates. </p>
+<p >Interface for a multi-dimensional array of dates. </p>
 
 </div>
 </div>
@@ -264,52 +259,22 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual vector of dates. </p>
+<p >Interface for a date-formatted vector. </p>
 
 </div>
 </div>
-<a id="a649561c7162f3d1e9efaa9d3a3c8172d" name="a649561c7162f3d1e9efaa9d3a3c8172d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a649561c7162f3d1e9efaa9d3a3c8172d">&#9670;&#160;</a></span>FactorArray</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef SomeFactorArray&lt;FACTOR&gt; <a class="el" href="interfaces_8hpp.html#a649561c7162f3d1e9efaa9d3a3c8172d">uzuki::FactorArray</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Virtual multi-dimensional array of unordered factors. </p>
-
-</div>
-</div>
-<a id="ac513ad5c601bbd86e02c785ffe123a05" name="ac513ad5c601bbd86e02c785ffe123a05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac513ad5c601bbd86e02c785ffe123a05">&#9670;&#160;</a></span>FactorVector</h2>
+<a id="a2bbfaeed8d27198b56689e896c2e6036" name="a2bbfaeed8d27198b56689e896c2e6036"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bbfaeed8d27198b56689e896c2e6036">&#9670;&#160;</a></span>IntegerArray</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef SomeFactorVector&lt;FACTOR&gt; <a class="el" href="interfaces_8hpp.html#ac513ad5c601bbd86e02c785ffe123a05">uzuki::FactorVector</a></td>
+          <td class="memname">typedef TypedArray&lt;int32_t, INTEGER_ARRAY&gt; <a class="el" href="interfaces_8hpp.html#a2bbfaeed8d27198b56689e896c2e6036">uzuki::IntegerArray</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual vector of unordered factors. </p>
-
-</div>
-</div>
-<a id="ad9d160531fd6f608cb680761ab5e1539" name="ad9d160531fd6f608cb680761ab5e1539"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9d160531fd6f608cb680761ab5e1539">&#9670;&#160;</a></span>IntegerArray</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef TypedArray&lt;int32_t, INTEGER&gt; <a class="el" href="interfaces_8hpp.html#ad9d160531fd6f608cb680761ab5e1539">uzuki::IntegerArray</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Virtual multi-dimensional array of integers. </p>
+<p >Interface for a multi-dimensional array of integers. </p>
 
 </div>
 </div>
@@ -324,22 +289,22 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual vector of integers. </p>
+<p >Interface for an integer vector. </p>
 
 </div>
 </div>
-<a id="a02c35d71aef5cd21dbc240ffc42502f2" name="a02c35d71aef5cd21dbc240ffc42502f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02c35d71aef5cd21dbc240ffc42502f2">&#9670;&#160;</a></span>NumberArray</h2>
+<a id="a25fc844de40af6285da9a6ca39b737dc" name="a25fc844de40af6285da9a6ca39b737dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25fc844de40af6285da9a6ca39b737dc">&#9670;&#160;</a></span>NumberArray</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef TypedArray&lt;double, NUMBER&gt; <a class="el" href="interfaces_8hpp.html#a02c35d71aef5cd21dbc240ffc42502f2">uzuki::NumberArray</a></td>
+          <td class="memname">typedef TypedArray&lt;double, NUMBER_ARRAY&gt; <a class="el" href="interfaces_8hpp.html#a25fc844de40af6285da9a6ca39b737dc">uzuki::NumberArray</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual multi-dimensional array of doubles. </p>
+<p >Interface for a multi-dimensional array of doubles. </p>
 
 </div>
 </div>
@@ -354,52 +319,22 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual vector of doubles. </p>
+<p >Interface for a double-precision vector. </p>
 
 </div>
 </div>
-<a id="ae8771b34a78020745f7c71c04548cf02" name="ae8771b34a78020745f7c71c04548cf02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8771b34a78020745f7c71c04548cf02">&#9670;&#160;</a></span>OrderedArray</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef SomeFactorArray&lt;ORDERED&gt; <a class="el" href="interfaces_8hpp.html#ae8771b34a78020745f7c71c04548cf02">uzuki::OrderedArray</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Virtual multi-dimensional array of ordered factors. </p>
-
-</div>
-</div>
-<a id="a6e4fc6c726d69591a228e0b6d2ffe6a7" name="a6e4fc6c726d69591a228e0b6d2ffe6a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e4fc6c726d69591a228e0b6d2ffe6a7">&#9670;&#160;</a></span>OrderedVector</h2>
+<a id="aa87c3ba49a75e8194a3027463ecbe4ec" name="aa87c3ba49a75e8194a3027463ecbe4ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa87c3ba49a75e8194a3027463ecbe4ec">&#9670;&#160;</a></span>StringArray</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef SomeFactorVector&lt;ORDERED&gt; <a class="el" href="interfaces_8hpp.html#a6e4fc6c726d69591a228e0b6d2ffe6a7">uzuki::OrderedVector</a></td>
+          <td class="memname">typedef TypedArray&lt;std::string, STRING_ARRAY&gt; <a class="el" href="interfaces_8hpp.html#aa87c3ba49a75e8194a3027463ecbe4ec">uzuki::StringArray</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual vector of ordered factors. </p>
-
-</div>
-</div>
-<a id="a1f9dba86d5f8f271d6aa2a97178c84c9" name="a1f9dba86d5f8f271d6aa2a97178c84c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f9dba86d5f8f271d6aa2a97178c84c9">&#9670;&#160;</a></span>StringArray</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef TypedArray&lt;std::string, STRING&gt; <a class="el" href="interfaces_8hpp.html#a1f9dba86d5f8f271d6aa2a97178c84c9">uzuki::StringArray</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Virtual multi-dimensional array of strings. </p>
+<p >Interface for a multi-dimensional array of strings. </p>
 
 </div>
 </div>
@@ -414,26 +349,11 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Virtual vector of strings. </p>
+<p >Interface for a string vector. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="aef66445e9a6ace1c33a89f11cce3ba12" name="aef66445e9a6ace1c33a89f11cce3ba12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef66445e9a6ace1c33a89f11cce3ba12">&#9670;&#160;</a></span>Structure</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="interfaces_8hpp.html#aef66445e9a6ace1c33a89f11cce3ba12">uzuki::Structure</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Structural type of an embedded R object. </p>
-
-</div>
-</div>
 <a id="a90beb764de6620dd6add3b601a147d53" name="a90beb764de6620dd6add3b601a147d53"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a90beb764de6620dd6add3b601a147d53">&#9670;&#160;</a></span>Type</h2>
 
@@ -445,7 +365,92 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Data type of an embedded R object. </p>
+<p >Data type of an embedded R object.</p>
+<ul>
+<li><code>INTEGER</code>: 32-bit signed integer vector.</li>
+<li><code>NUMBER</code>: double-precision vector.</li>
+<li><code>STRING</code>: vector of strings.</li>
+<li><code>BOOLEAN</code>: vector of booleans.</li>
+<li><code>DATE</code>: vector of date strings in <code>YYYY-MM-DD</code> format.</li>
+<li><code>FACTOR</code>: factor containing integer indices to unique levels.</li>
+<li><code>INTEGER_ARRAY</code>: multi-dimensional array of 32-bit signed integers.</li>
+<li><code>NUMBER_ARRAY</code>: multi-dimensional array of doubles.</li>
+<li><code>STRING_ARRAY</code>: multi-dimensional array of strings.</li>
+<li><code>BOOLEAN_ARRAY</code>: multi-dimensional array of booleans.</li>
+<li><code>FACTOR_ARRAY</code>: multi-dimensional array of factors.</li>
+<li><code>DATE_ARRAY</code>: multi-dimensional array of date strings.</li>
+<li><code>DATA_FRAME</code>: a data frame containing nested arrays or vectors.</li>
+<li><code>LIST</code>: a list containing nested objects.</li>
+<li><code>NOTHING</code>: equivalent to R's <code>NULL</code>.</li>
+<li><code>OTHER</code>: an external reference to an unknown R object. </li>
+</ul>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a5094aea3415082e514b6d79d3cdd3e67" name="a5094aea3415082e514b6d79d3cdd3e67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5094aea3415082e514b6d79d3cdd3e67">&#9670;&#160;</a></span>is_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool uzuki::is_array </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interfaces_8hpp.html#a90beb764de6620dd6add3b601a147d53">Type</a>&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>Data type of an object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the object is an array. </dd></dl>
+
+</div>
+</div>
+<a id="a2309598d91788226fc2dd289f7e48a4e" name="a2309598d91788226fc2dd289f7e48a4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2309598d91788226fc2dd289f7e48a4e">&#9670;&#160;</a></span>is_vector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool uzuki::is_vector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interfaces_8hpp.html#a90beb764de6620dd6add3b601a147d53">Type</a>&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>Data type of an object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the object is a vector. </dd></dl>
 
 </div>
 </div>

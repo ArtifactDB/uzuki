@@ -1,0 +1,5 @@
+<map id="uzuki::FactorBase" name="uzuki::FactorBase">
+<area shape="rect" id="node1" title="Helper interface for factors." alt="" coords="57,5,182,31"/>
+<area shape="rect" id="node2" href="$structuzuki_1_1Factor.html" title="Interface for a 1&#45;dimensional factor." alt="" coords="5,79,100,104"/>
+<area shape="rect" id="node3" href="$structuzuki_1_1FactorArray.html" title="Interface for multi&#45;dimensional factor arrays." alt="" coords="125,79,250,104"/>
+</map>
