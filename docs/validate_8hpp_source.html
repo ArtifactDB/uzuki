@@ -92,17 +92,26 @@ $(function() {
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span>uzuki {</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> Json&gt;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="validate_8hpp.html#ab400cfa2f6788bebc98ed9e96d67693a">   30</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="validate_8hpp.html#ab400cfa2f6788bebc98ed9e96d67693a">validate</a>(<span class="keyword">const</span> Json&amp; contents, <span class="keywordtype">int</span> num_external = 0) {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="validate_8hpp.html#ab1851fdbdd28d2c4a7bad1c9d95f422c">   30</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="validate_8hpp.html#ab1851fdbdd28d2c4a7bad1c9d95f422c">validate</a>(<span class="keyword">const</span> Json&amp; contents, <span class="keywordtype">size_t</span> num_external) {</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    DummyExternals others(num_external);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    parse&lt;DummyProvisioner&gt;(contents, others);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    parse&lt;DummyProvisioner&gt;(contents, std::move(others));</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> Json&gt;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="validate_8hpp.html#a05c6d25a8073f0ccd5213ce82ce7706d">   45</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="validate_8hpp.html#ab1851fdbdd28d2c4a7bad1c9d95f422c">validate</a>(<span class="keyword">const</span> Json&amp; contents) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    DummyExternals others(-1);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    ExternalTracker etrack(std::move(others));</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    unpack&lt;DummyProvisioner&gt;(contents, etrack);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    check_external_indices(etrack.indices);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">return</span> etrack.indices.size();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aparse_8hpp_html"><div class="ttname"><a href="parse_8hpp.html">parse.hpp</a></div><div class="ttdoc">Parse JSON file contents using the uzuki spec.</div></div>
-<div class="ttc" id="avalidate_8hpp_html_ab400cfa2f6788bebc98ed9e96d67693a"><div class="ttname"><a href="validate_8hpp.html#ab400cfa2f6788bebc98ed9e96d67693a">uzuki::validate</a></div><div class="ttdeci">void validate(const Json &amp;contents, int num_external=0)</div><div class="ttdef"><b>Definition:</b> validate.hpp:30</div></div>
+<div class="ttc" id="avalidate_8hpp_html_ab1851fdbdd28d2c4a7bad1c9d95f422c"><div class="ttname"><a href="validate_8hpp.html#ab1851fdbdd28d2c4a7bad1c9d95f422c">uzuki::validate</a></div><div class="ttdeci">void validate(const Json &amp;contents, size_t num_external)</div><div class="ttdef"><b>Definition:</b> validate.hpp:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

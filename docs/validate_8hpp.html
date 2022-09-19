@@ -111,15 +111,51 @@ Include dependency graph for validate.hpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab400cfa2f6788bebc98ed9e96d67693a"><td class="memTemplParams" colspan="2">template&lt;class Json &gt; </td></tr>
-<tr class="memitem:ab400cfa2f6788bebc98ed9e96d67693a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="validate_8hpp.html#ab400cfa2f6788bebc98ed9e96d67693a">uzuki::validate</a> (const Json &amp;contents, int num_external=0)</td></tr>
-<tr class="separator:ab400cfa2f6788bebc98ed9e96d67693a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1851fdbdd28d2c4a7bad1c9d95f422c"><td class="memTemplParams" colspan="2">template&lt;class Json &gt; </td></tr>
+<tr class="memitem:ab1851fdbdd28d2c4a7bad1c9d95f422c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="validate_8hpp.html#ab1851fdbdd28d2c4a7bad1c9d95f422c">uzuki::validate</a> (const Json &amp;contents, size_t num_external)</td></tr>
+<tr class="separator:ab1851fdbdd28d2c4a7bad1c9d95f422c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05c6d25a8073f0ccd5213ce82ce7706d"><td class="memTemplParams" colspan="2">template&lt;class Json &gt; </td></tr>
+<tr class="memitem:a05c6d25a8073f0ccd5213ce82ce7706d"><td class="memTemplItemLeft" align="right" valign="top">size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="validate_8hpp.html#a05c6d25a8073f0ccd5213ce82ce7706d">uzuki::validate</a> (const Json &amp;contents)</td></tr>
+<tr class="separator:a05c6d25a8073f0ccd5213ce82ce7706d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Validate JSON file contents against the <b>uzuki</b> spec. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ab400cfa2f6788bebc98ed9e96d67693a" name="ab400cfa2f6788bebc98ed9e96d67693a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab400cfa2f6788bebc98ed9e96d67693a">&#9670;&#160;</a></span>validate()</h2>
+<a id="a05c6d25a8073f0ccd5213ce82ce7706d" name="a05c6d25a8073f0ccd5213ce82ce7706d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05c6d25a8073f0ccd5213ce82ce7706d">&#9670;&#160;</a></span>validate() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Json &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t uzuki::validate </td>
+          <td>(</td>
+          <td class="paramtype">const Json &amp;&#160;</td>
+          <td class="paramname"><em>contents</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Validate JSON file contents against the <b>uzuki</b> specification with an unknown number of external references. Any invalid representations will cause an error to be thrown.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Json</td><td>A <a href="https://github.com/nlohmann/json"><code>nlohmann::json</code></a>-compatible representation of JSON data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">contents</td><td>Parsed contents of the JSON file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab1851fdbdd28d2c4a7bad1c9d95f422c" name="ab1851fdbdd28d2c4a7bad1c9d95f422c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1851fdbdd28d2c4a7bad1c9d95f422c">&#9670;&#160;</a></span>validate() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -135,8 +171,8 @@ template&lt;class Json &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>num_external</em> = <code>0</code>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>num_external</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
