@@ -129,6 +129,7 @@ TEST(BasicListTest, HarderSuccess) {
         }
     };
     EXPECT_NO_THROW(uzuki::validate(thing, 2));
+    EXPECT_EQ(uzuki::validate(thing), 2);
 }
 
 TEST(BasicListTest, DataFrameSuccess) {
@@ -156,4 +157,5 @@ TEST(BasicListTest, DataFrameSuccess) {
         }
     });
     EXPECT_NO_THROW(uzuki::validate(thing));
+    EXPECT_EQ(uzuki::validate(thing), 0);
 }

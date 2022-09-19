@@ -37,6 +37,16 @@ struct ExternalTracker {
     CustomExternals getter;
     std::vector<size_t> indices;
 };
+
+inline void check_external_indices(std::vector<size_t>& other_indices) {
+    std::sort(other_indices.begin(), other_indices.end());
+    int nother = other_indices.size();
+    for (int i = 0; i < nother; ++i) {
+        if (i != other_indices[i]) {
+            throw std::runtime_error("set of \"index\" values for type \"other\" should be consecutive starting from zero");
+        }
+    }
+}
 /**
  * @endcond
  */
@@ -91,17 +101,10 @@ std::shared_ptr<Base> parse(const Json& contents, Externals ext) {
     auto ptr = unpack<Provisioner>(contents, etrack);
 
     // Checking that the external indices match up.
-    auto& other_indices = etrack.indices;
-    if (other_indices.size() != ext.size()) {
-        throw std::runtime_error("fewer instances of type \"other\" than expected from 'ext'");
+    if (etrack.indices.size() != ext.size()) {
+        throw std::runtime_error("fewer instances of type \"other\" than expected (" + std::to_string(ext.size()) + ")");
     }
-
-    std::sort(other_indices.begin(), other_indices.end());
-    for (int i = 0; i < static_cast<int>(other_indices.size()); ++i) {
-        if (i != other_indices[i]) {
-            throw std::runtime_error("set of \"index\" values for type \"other\" should be consecutive starting from zero");
-        }
-    }
+    check_external_indices(etrack.indices);
 
     return ptr;
 }
